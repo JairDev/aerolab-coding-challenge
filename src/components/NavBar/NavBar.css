@@ -1,0 +1,8 @@
+.App-nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.App-nav-container-aerocoins {
+  display: flex;
+}

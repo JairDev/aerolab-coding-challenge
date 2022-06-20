@@ -1,5 +1,9 @@
 function Home() {
   return (
-    <div></div>
-  )
+    <main>
+      <section className="landing"></section>
+    </main>
+  );
 }
+
+export default Home;
