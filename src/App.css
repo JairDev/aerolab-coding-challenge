@@ -6,10 +6,12 @@
 
 :root {
   --title-font-size-sm: 6rem;
+  --titleL2-font-size-sm: 2rem;
   --title-font-size-lg: 12.5rem;
   --subtitle-font-size: 1rem;
   --label-font-size: 1rem;
   --body-font-size: 1rem
+  --font-family: 'Montserrat', sans-serif;
 }
 
 body {
