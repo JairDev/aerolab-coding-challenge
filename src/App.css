@@ -19,7 +19,7 @@ body {
 }
 
 .App {
-
+  overflow: hidden;
 }
 
 

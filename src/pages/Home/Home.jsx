@@ -3,7 +3,11 @@ import walkCard1 from "../../assets/img/walk-card1.png";
 import walkCard2 from "../../assets/img/walk-card2.png";
 import walkCard3 from "../../assets/img/walk-card3.png";
 import walkCardLogo from "../../assets/icons/walk-card-logo.svg";
+import arrowDown from "../../assets/icons/arrow-down.svg";
+import arrowPaginationLeft from "../../assets/icons/arrow-left.svg";
+import arrowPaginationRight from "../../assets/icons/arrow-right.svg";
 import "./Home.css";
+import ProductCard from "../../components/ProductCard/ProductCard";
 
 function Home() {
   return (
@@ -18,7 +22,12 @@ function Home() {
               and exchange them for cool tech.
             </h2>
           </div>
-          <div className="cta-button-container">VIEW ALL PRODUCTS</div>
+          <div className="cta-button-container">
+            VIEW ALL PRODUCTS{" "}
+            <span className="icon-cta-landing">
+              <img src={arrowDown} />
+            </span>
+          </div>
         </div>
         <div className="landing-illustration-container">
           <div className="illustration-container">
@@ -47,7 +56,7 @@ function Home() {
             </div>
           </div>
 
-          <div className="walkthrough-card">
+          <div className="walkthrough-card middle">
             <div className="walkthrough-card-header">
               <img src={walkCard2} />
             </div>
@@ -93,7 +102,11 @@ function Home() {
               <div className="product-section-header-filter-category">
                 <form className="form-filter-category">
                   <label htmlFor="filter">Filter by</label>
-                  <select className="select-filter-category" name="filter" id="">
+                  <select
+                    className="select-filter-category"
+                    name="filter"
+                    id=""
+                  >
                     <option value="">All products</option>
                     <option value="">Gaming</option>
                     <option value="">Audio</option>
@@ -117,26 +130,29 @@ function Home() {
                   </div>
                 </div>
               </div>
+              <div className="container-product-pagination">
+                <div className="content-icon-pagination left">
+                  <img src={arrowPaginationLeft} />
+                </div>
+                <div className="product-pagination">Page 1 of 2</div>
+                <div className="content-icon-pagination right">
+                  <img src={arrowPaginationRight} />
+                </div>
+              </div>
             </div>
           </div>
 
           <div className="container-products">
-            <div className="product-card">
-              <div className="product-card-header">
-                <img src={walkCard3} />
-              </div>
-              <div className="product-card-footer">
-                <div className="product-card-footer-title">
-                  <p className="product-card-title">Audifonos</p>
-                  <span className="product-card-subtitle">Home</span>
-                </div>
-                <div className="product-card-action">
-                  <form action="">
-                    <button className="button-redeem">Redeem</button>
-                  </form>
-                </div>
-              </div>
-            </div>
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+          </div>
+
+          <div className="product-section-footer">
+
           </div>
         </div>
       </section>
