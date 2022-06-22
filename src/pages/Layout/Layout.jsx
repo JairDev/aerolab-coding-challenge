@@ -5,6 +5,7 @@ function Layout({children}) {
   return (
     <div className="container">
       <NavBar/>
+      {/* {navBar} */}
       {children}
     </div>
   )

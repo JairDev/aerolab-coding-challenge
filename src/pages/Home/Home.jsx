@@ -9,7 +9,7 @@ import arrowPaginationRight from "../../assets/icons/arrow-right.svg";
 import "./Home.css";
 import ProductCard from "../../components/ProductCard/ProductCard";
 
-function Home() {
+function Home({points}) {
   return (
     <main>
       <section className="landing">
