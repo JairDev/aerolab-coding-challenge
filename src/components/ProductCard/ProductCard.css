@@ -15,12 +15,13 @@
 .product-card-footer-title {
   border: 1px solid #dae4f2;
   border-radius: 0px 0px 16px 16px;
-  padding: 1rem 2rem;
+  padding: 1.5rem 2rem;
 }
 
 .product-card-title {
   color: #252f3d;
   font-weight: 600;
+  line-height: 150%;
 }
 
 .product-card-subtitle {

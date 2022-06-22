@@ -152,7 +152,18 @@ function Home() {
           </div>
 
           <div className="product-section-footer">
-
+            <div className="product-section-footer-wrapper">
+              <div className="total-products">1 of 16 products</div>
+              <div className="container-product-pagination">
+                <div className="content-icon-pagination left">
+                  <img src={arrowPaginationLeft} />
+                </div>
+                <div className="product-pagination">Page 1 of 2</div>
+                <div className="content-icon-pagination right">
+                  <img src={arrowPaginationRight} />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -9,11 +9,12 @@
 }
 
 .App-nav-container-action {
-  border: 1px solid #DAE4F2;
+  border: 1px solid #dae4f2;
   border-radius: 40px;
-  padding: .5rem ; 
+  padding: 0.5rem;
   width: 50%;
   max-width: 180px;
+  position: relative;
 }
 
 .App-nav-container-aerocoins {
@@ -36,5 +37,104 @@
 }
 
 .aerocoins-dropdown-icon {
-  margin-left: .3rem;
+  margin-left: 0.3rem;
+}
+
+.App-nav-container-aeropay-card {
+  background: #ffffff;
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  border: 1px solid #dae4f2;
+  display: none;
+  position: absolute;
+  top: 3rem;
+  right: 0;
+  width: 312px;
+  z-index: 15;
+}
+
+.aeropay-card {
+  /* padding: 1rem; */
+}
+
+.aeropay-header {
+  border-bottom: 1px solid #dae4f2;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.aeropay-header-title {
+  color: #252F3D;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.aeropay-body {
+  padding: 1rem;
+}
+
+.aeropay-body-aerocard {
+  background: #252f3d;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  color: #F5F9FF;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 148px;
+  padding: 1rem;
+}
+
+.aeropay-body p {
+  font-weight: 600;
+}
+
+.aeropay-body-aerocard,
+.aeropay-body-points,
+.aeropay-body-action {
+  margin-top: 1rem;
+}
+
+.aeropay-body-aerocard-header {
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.aeropay-body-aerocard-footer {
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.aeropay-body-points {
+  display: flex;
+  justify-content: space-between;
+}
+
+.aeropay-points {
+  background: linear-gradient(102.47deg, #176feb -5.34%, #ff80ff 106.58%);
+  border-radius: 12px;
+  color: #f5f9ff;
+  text-align: center;
+  padding: 0.4rem 1rem;
+}
+
+.aeropay-points p {
+  font-weight: 600;
+}
+
+.aeropay-button {
+  border: none;
+  background: linear-gradient(102.47deg, #176feb -5.34%, #ff80ff 106.58%);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  color: #ffffff;
+  font-weight: 600;
+  font-family: var(--font-family);
+  font-size: 1.1rem;
+  width: 100%;
+  padding: 1rem;
+  /* height: 56px */
 }
