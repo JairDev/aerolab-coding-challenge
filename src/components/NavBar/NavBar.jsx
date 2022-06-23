@@ -5,37 +5,43 @@ import aeropayIcon from "../../assets/icons/aeropay-icon.svg";
 import aeropayCloseIcon from "../../assets/icons/aeropay-close-icon.svg";
 import "./NavBar.css";
 import { dataService } from "../../services/data.service";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AerolabContextData } from "../../context";
 
 const URL_DATA_USER = "https://coding-challenge-api.aerolab.co/user/me";
+const URL_USER_POINTS = "https://coding-challenge-api.aerolab.co/user/points";
 
-const HEADERS_USER_DATA = {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-    Accept: "application/json",
-    Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmFiNjBjOTUyMzQwMzAwMjE2YmQxYjciLCJpYXQiOjE2NTUzOTg2MDF9.Ad7f8yRQZITY5YNmg9JRyvXg8-Ogi252mOm_4XVykac`,
-  },
-};
-
-const HEADERS_USER_ADD_POINTS = {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    Accept: "application/json",
-    Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmFiNjBjOTUyMzQwMzAwMjE2YmQxYjciLCJpYXQiOjE2NTUzOTg2MDF9.Ad7f8yRQZITY5YNmg9JRyvXg8-Ogi252mOm_4XVykac`,
-  },
-};
+export function createHeader(method, bodyObj) {
+  const header = {
+    method: method,
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmFiNjBjOTUyMzQwMzAwMjE2YmQxYjciLCJpYXQiOjE2NTUzOTg2MDF9.Ad7f8yRQZITY5YNmg9JRyvXg8-Ogi252mOm_4XVykac`,
+      "Access-Control-Allow-Origin": "*",
+    },
+    body: JSON.stringify(bodyObj),
+  };
+  return header;
+}
 
 function NavBar() {
-  const [userData, setUserData] = useState({});
-  // const nav = <NavBar points={data}/>
+  let amount = 0;
+
+
   useEffect(() => {
-    const data = dataService(URL_DATA_USER, HEADERS_USER_DATA);
-    data.then((res) => setUserData(res));
-    // console.log(data);
+    const data = dataService(URL_DATA_USER, createHeader("GET"));
+    
   }, []);
 
+  const handleClick = (e) => {
+    amount = Number(e.target.value);
+    const data = dataService(
+      URL_USER_POINTS,
+      createHeader("POST", { amount: amount })
+    );
+    e.preventDefault();
+  };
 
   return (
     <header className="App-header">
@@ -48,7 +54,7 @@ function NavBar() {
             <div className="aerocoins-logo">
               <img src={aerolabCoinLogo} />
             </div>
-            <div className="aerocoins-points">{userData.points}</div>
+            <div className="aerocoins-points">{state?.userData?.points}</div>
             <div className="aerocoins-dropdown-icon">
               <img src={dropIcon} />
             </div>
@@ -75,7 +81,7 @@ function NavBar() {
                   </div>
                   <div className="aeropay-body-aerocard-footer">
                     <div className="aeropay-body-aerocard-footer-user-name">
-                      <p>{userData.name}</p>
+                      <p>{state?.userData?.name}</p>
                     </div>
                     <div className="aeropay-body-aerocard-fotter-user-date">
                       <p>07/23</p>
@@ -85,17 +91,35 @@ function NavBar() {
                 <div className="aeropay-body-points">
                   <div className="aeropay-points 1000">
                     <form className="aeropay-form">
-                      <button className="aeropay-add-point-button">1000</button>
+                      <button
+                        onClick={handleClick}
+                        value="1000"
+                        className="aeropay-add-point-button"
+                      >
+                        1000
+                      </button>
                     </form>
                   </div>
                   <div className="aeropay-points 5000">
                     <form className="aeropay-body-form">
-                      <button className="aeropay-add-point-button">5000</button>
+                      <button
+                        onClick={handleClick}
+                        value="5000"
+                        className="aeropay-add-point-button"
+                      >
+                        5000
+                      </button>
                     </form>
                   </div>
                   <div className="aeropay-points 7500">
                     <form className="aeropay-body-form">
-                      <button className="aeropay-add-point-button">7500</button>
+                      <button
+                        onClick={handleClick}
+                        value="7500"
+                        className="aeropay-add-point-button"
+                      >
+                        7500
+                      </button>
                     </form>
                   </div>
                 </div>

@@ -118,7 +118,6 @@
   border-radius: 12px;
   color: #f5f9ff;
   text-align: center;
-  padding: 0.4rem 1rem;
 }
 
 .aeropay-add-point-button {
@@ -127,6 +126,7 @@
   color: #f5f9ff;
   font-size: 1.1rem;
   font-weight: 600;
+  padding: 0.4rem 1rem;
 }
 
 .aeropay-points p {

@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
+import { AerolabContextData } from "./context";
 import Home from "./pages/Home/Home";
 import Layout from "./pages/Layout/Layout";
+import { initialState, reducer } from "./reducer";
 import { dataService } from "./services/data.service";
 
 const URL_DATA_USER = "https://coding-challenge-api.aerolab.co/user/me";
 
-const HEADERS = {
+const HEADERS_USER_DATA = {
   method: "GET",
   headers: {
     "Content-Type": "application/json",
@@ -17,12 +19,15 @@ const HEADERS = {
 };
 
 function App() {
+  const [state, dispatch] = useReducer(reducer, initialState)
 
   return (
     <div className="App">
-      <Layout>
-        <Home />
-      </Layout>
+      <AerolabContextData.Provider value={{state, dispatch}}>
+        <Layout>
+          <Home />
+        </Layout>
+      </AerolabContextData.Provider>
     </div>
   );
 }
