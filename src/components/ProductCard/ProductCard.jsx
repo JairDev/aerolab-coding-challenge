@@ -1,7 +1,7 @@
 import { useContext, useReducer } from "react";
 import walkCard3 from "../../assets/img/walk-card3.png";
 import { dataService } from "../../services/data.service";
-import { createHeader } from "../NavBar/NavBar";
+// import { createHeader } from "../NavBar/NavBar";
 import "./ProductCard.css"
 
 const ULR_PRODUCT_REDEEM = "https://coding-challenge-api.aerolab.co/redeem"

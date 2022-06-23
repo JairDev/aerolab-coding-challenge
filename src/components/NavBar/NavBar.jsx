@@ -5,34 +5,21 @@ import aeropayIcon from "../../assets/icons/aeropay-icon.svg";
 import aeropayCloseIcon from "../../assets/icons/aeropay-close-icon.svg";
 import "./NavBar.css";
 import { dataService } from "../../services/data.service";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { AerolabContextData } from "../../context";
+import { createHeader } from "../../utils/createHeaders.utils";
 
 const URL_DATA_USER = "https://coding-challenge-api.aerolab.co/user/me";
 const URL_USER_POINTS = "https://coding-challenge-api.aerolab.co/user/points";
 
-export function createHeader(method, bodyObj) {
-  const header = {
-    method: method,
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmFiNjBjOTUyMzQwMzAwMjE2YmQxYjciLCJpYXQiOjE2NTUzOTg2MDF9.Ad7f8yRQZITY5YNmg9JRyvXg8-Ogi252mOm_4XVykac`,
-      "Access-Control-Allow-Origin": "*",
-    },
-    body: JSON.stringify(bodyObj),
-  };
-  return header;
-}
-
 function NavBar() {
   let amount = 0;
-
+  const { state, dispatch } = useContext(AerolabContextData);
 
   useEffect(() => {
     const data = dataService(URL_DATA_USER, createHeader("GET"));
-    
-  }, []);
+    data.then((res) => dispatch({ type: "receiveUserData", payload: res }));
+  }, [state.points, state.redeemMessage]);
 
   const handleClick = (e) => {
     amount = Number(e.target.value);
@@ -40,6 +27,7 @@ function NavBar() {
       URL_USER_POINTS,
       createHeader("POST", { amount: amount })
     );
+    data.then((res) => dispatch({ type: "addPoints", payload: res }));
     e.preventDefault();
   };
 
