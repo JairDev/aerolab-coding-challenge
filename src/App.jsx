@@ -18,8 +18,14 @@ const HEADERS_USER_DATA = {
   },
 };
 
+const a = {aa: "A", bb: {c: "c"}}
+const {c} = a.bb
+console.log(c)
+
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
+
+
 
   return (
     <div className="App">

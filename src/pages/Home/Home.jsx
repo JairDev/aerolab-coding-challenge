@@ -8,6 +8,7 @@ import arrowPaginationLeft from "../../assets/icons/arrow-left.svg";
 import arrowPaginationRight from "../../assets/icons/arrow-right.svg";
 import "./Home.css";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import FilterableProducts from "../../components/FilterableProducts/FilterableProducts";
 
 function Home({points}) {
   return (
@@ -143,12 +144,7 @@ function Home({points}) {
           </div>
 
           <div className="container-products">
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
+            <FilterableProducts/>
           </div>
 
           <div className="product-section-footer">
