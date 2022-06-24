@@ -3,7 +3,7 @@ export const initialState = {
   points: {},
   productsData: [],
   redeemMessage: {},
-  visibility: "all",
+  visibilityCategory: "all",
   visibilityPrice: ""
 };
 
@@ -18,8 +18,8 @@ export const reducer = (state = initialState, { type, payload }) => {
     case "redeemPoints":
       return { ...state, redeemMessage: payload };
     case "filterByCategory":
-      return { ...state, visibility: payload, visibilityPrice: "" };
-    case "filterByPrice":
+      return { ...state, visibilityCategory: payload, visibilityPrice: "" };
+    case "sortByPrice":
       return { ...state, visibilityPrice: payload };
     default:
       return state;

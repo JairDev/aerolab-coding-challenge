@@ -5,11 +5,15 @@ import { createHeader } from "../../utils/createHeaders.utils";
 import ProductCard from "../ProductCard/ProductCard";
 import arrowPaginationLeft from "../../assets/icons/arrow-left.svg";
 import arrowPaginationRight from "../../assets/icons/arrow-right.svg";
+import { handleFilterPrice } from "../../utils/filterData";
 
 const URL_PRODUCTS = "https://coding-challenge-api.aerolab.co/products";
 
 function FilterableProducts() {
   const { state, dispatch } = useContext(AerolabContextData);
+  const categoryValue = state.visibilityCategory;
+  const priceValue = state.visibilityPrice;
+  const productsData = state.productsData;
 
   useEffect(() => {
     const data = dataService(URL_PRODUCTS, createHeader("GET"));
@@ -88,17 +92,18 @@ function FilterableProducts() {
         </div>
       </div>
       <div className="container-products">
-        {state?.productsData.map(({ _id, img, name, category, cost }) => (
-          <ProductCard
-            key={_id}
-            id={_id}
-            imgSrc={img.url}
-            productName={name}
-            productCategory={category}
-            productCost={cost}
-          />
-        ))}
-
+        {handleFilterPrice(categoryValue, priceValue, productsData).map(
+          ({ _id, img, name, category, cost }) => (
+            <ProductCard
+              key={_id}
+              id={_id}
+              imgSrc={img.url}
+              productName={name}
+              productCategory={category}
+              productCost={cost}
+            />
+          )
+        )}
       </div>
     </>
   );
