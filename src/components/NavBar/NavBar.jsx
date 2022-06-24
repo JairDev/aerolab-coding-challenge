@@ -5,7 +5,7 @@ import aeropayIcon from "../../assets/icons/aeropay-icon.svg";
 import aeropayCloseIcon from "../../assets/icons/aeropay-close-icon.svg";
 import "./NavBar.css";
 import { dataService } from "../../services/data.service";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { AerolabContextData } from "../../context";
 import { createHeader } from "../../utils/createHeaders.utils";
 
@@ -15,6 +15,7 @@ const URL_USER_POINTS = "https://coding-challenge-api.aerolab.co/user/points";
 function NavBar() {
   let amount = 0;
   const { state, dispatch } = useContext(AerolabContextData);
+  const refAeropayCard = useRef()
 
   useEffect(() => {
     const data = dataService(URL_DATA_USER, createHeader("GET"));
@@ -31,23 +32,28 @@ function NavBar() {
     e.preventDefault();
   };
 
+  const handleDropDownClick = (e) => {
+    console.log(refAeropayCard.current)
+    refAeropayCard.current.classList.toggle("show")
+  } 
+
   return (
     <header className="App-header">
       <nav className="App-nav">
         <div className="App-nav-container-logo">
           <img src={aerolabLogo} />
         </div>
-        <div className="App-nav-container-action">
+        <div onClick={handleDropDownClick} className="App-nav-container-action">
           <div className="App-nav-container-aerocoins">
             <div className="aerocoins-logo">
               <img src={aerolabCoinLogo} />
             </div>
             <div className="aerocoins-points">{state?.userData?.points}</div>
-            <div className="aerocoins-dropdown-icon">
+            <div  className="aerocoins-dropdown-icon">
               <img src={dropIcon} />
             </div>
           </div>
-          <div className="App-nav-container-aeropay-card">
+          <div ref={refAeropayCard} className="App-nav-container-aeropay-card">
             <div className="aeropay-card">
               <div className="aeropay-header">
                 <div className="aeropay-header-title">Add balance</div>
