@@ -243,17 +243,25 @@
   scroll-snap-align: start;
 }
 
-.filter-price-option {
+/* .filter-price-option {
   background: linear-gradient(102.47deg, #176feb -5.34%, #ff80ff 106.58%);
   border-radius: 12px;
   color: #f5f9ff;
   text-align: center;
   padding: 0.8rem 0;
   width: 136px;
-}
+} */
 
-.filter-price-option p {
+.filter-price-option button {
+  border: none;
+  background: linear-gradient(102.47deg, #176feb -5.34%, #ff80ff 106.58%);
+  border-radius: 12px;
+  color: #f5f9ff;
+  text-align: center;
+  padding: 0.8rem 0;
+  width: 136px;
   font-weight: 600;
+
 }
 
 .container-product-pagination {

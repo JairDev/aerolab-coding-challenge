@@ -10,7 +10,7 @@ import "./Home.css";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import FilterableProducts from "../../components/FilterableProducts/FilterableProducts";
 
-function Home({points}) {
+function Home({ points }) {
   return (
     <main>
       <section className="landing">
@@ -95,58 +95,7 @@ function Home({points}) {
 
       <section className="product-section">
         <div className="product-section-container">
-          <div className="product-section-header">
-            <div className="product-section-header-title">
-              <h2>Tech Products</h2>
-            </div>
-            <div className="product-section-header-filter">
-              <div className="product-section-header-filter-category">
-                <form className="form-filter-category">
-                  <label htmlFor="filter">Filter by</label>
-                  <select
-                    className="select-filter-category"
-                    name="filter"
-                    id=""
-                  >
-                    <option value="">All products</option>
-                    <option value="">Gaming</option>
-                    <option value="">Audio</option>
-                    <option value="">Smart Home</option>
-                    <option value="">Monitors & Tv</option>
-                  </select>
-                </form>
-              </div>
-
-              <div className="product-section-header-filter-price">
-                <span>Sort by</span>
-                <div className="filter-price-options-container">
-                  <div className="filter-price-option">
-                    <p>Most Recent</p>
-                  </div>
-                  <div className="filter-price-option">
-                    <p>Lowest Price</p>
-                  </div>
-                  <div className="filter-price-option">
-                    <p>Highest Price</p>
-                  </div>
-                </div>
-              </div>
-              <div className="container-product-pagination">
-                <div className="content-icon-pagination left">
-                  <img src={arrowPaginationLeft} />
-                </div>
-                <div className="product-pagination">Page 1 of 2</div>
-                <div className="content-icon-pagination right">
-                  <img src={arrowPaginationRight} />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="container-products">
-            <FilterableProducts/>
-          </div>
-
+          <FilterableProducts />
           <div className="product-section-footer">
             <div className="product-section-footer-wrapper">
               <div className="total-products">1 of 16 products</div>
