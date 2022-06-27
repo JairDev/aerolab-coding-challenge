@@ -9,8 +9,9 @@ import arrowPaginationRight from "../../assets/icons/arrow-right.svg";
 import "./Home.css";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import FilterableProducts from "../../components/FilterableProducts/FilterableProducts";
+import { useEffect } from "react";
 
-function Home({ points }) {
+function Home() {
   return (
     <main>
       <section className="landing">

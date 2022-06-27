@@ -1,4 +1,4 @@
-import { useContext, useEffect, useReducer, useState } from "react";
+import { useContext, useEffect, useReducer, useRef, useState } from "react";
 import { AerolabContextData } from "../../context";
 import { dataService } from "../../services/data.service";
 import { createHeader } from "../../utils/createHeaders.utils";
@@ -6,14 +6,23 @@ import ProductCard from "../ProductCard/ProductCard";
 import arrowPaginationLeft from "../../assets/icons/arrow-left.svg";
 import arrowPaginationRight from "../../assets/icons/arrow-right.svg";
 import { handleFilterPrice } from "../../utils/filterData";
+import Button from "../Button/Button";
+// import ContainerButton, { Button } from "../Button/Button";
 
 const URL_PRODUCTS = "https://coding-challenge-api.aerolab.co/products";
+
+const buttonData = [
+  { value: "recent", label: "Most Recent" },
+  { value: "lowest-price", label: "Lowest Price" },
+  { value: "highest-price", label: "Highest Price" },
+];
 
 function FilterableProducts() {
   const { state, dispatch } = useContext(AerolabContextData);
   const categoryValue = state.visibilityCategory;
   const priceValue = state.visibilityPrice;
   const productsData = state.productsData;
+  const refButton = useRef([]);
 
   useEffect(() => {
     const data = dataService(URL_PRODUCTS, createHeader("GET"));
@@ -53,7 +62,9 @@ function FilterableProducts() {
               >
                 <option value="all">All products</option>
                 {getCategoryOptions().map((option) => (
-                  <option value={option}>{option}</option>
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
                 ))}
               </select>
             </form>
@@ -62,7 +73,7 @@ function FilterableProducts() {
           <div className="product-section-header-filter-price">
             <span>Sort by</span>
             <div className="filter-price-options-container">
-              <div className="filter-price-option">
+              {/* <div className="filter-price-option">
                 <button onClick={handleClickSort} value="recent">
                   Most Recent
                 </button>
@@ -76,7 +87,19 @@ function FilterableProducts() {
                 <button onClick={handleClickSort} value="highest-price">
                   Highest Price
                 </button>
-              </div>
+              </div> */}
+              {/* {buttonData.map((button, i) => (
+                <div key={button.value} className="filter-price-option">
+                  <Button
+                    dynamicClass={"aeropay-filter"}
+                    valueButton={button.value}
+                    refC={(el) => (refButton.current[i] = el)}
+                    handleClick={handleClickSort}
+                  >
+                    {button.label}
+                  </Button>
+                </div>
+              ))} */}
             </div>
           </div>
 

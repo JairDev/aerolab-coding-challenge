@@ -3,39 +3,72 @@ import aerolabCoinLogo from "../../assets/icons/aerolab-coin-logo.svg";
 import dropIcon from "../../assets/icons/drop-icon.svg";
 import aeropayIcon from "../../assets/icons/aeropay-icon.svg";
 import aeropayCloseIcon from "../../assets/icons/aeropay-close-icon.svg";
+import successIcon from "../../assets/icons/success-icon.svg";
 import "./NavBar.css";
 import { dataService } from "../../services/data.service";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AerolabContextData } from "../../context";
 import { createHeader } from "../../utils/createHeaders.utils";
+import Button from "../Button/Button";
+import Loader from "../Loader/Loader";
 
-const URL_DATA_USER = "https://coding-challenge-api.aerolab.co/user/me";
+const URL_USER_DATA = "https://coding-challenge-api.aerolab.co/user/me";
 const URL_USER_POINTS = "https://coding-challenge-api.aerolab.co/user/points";
 
+const buttonData = [{ value: "1000" }, { value: "5000" }, { value: "7500" }];
+
 function NavBar() {
-  let amount = 0;
+  const [amount, setAmount] = useState(1000);
   const { state, dispatch } = useContext(AerolabContextData);
-  const refAeropayCard = useRef()
+  const [loader, setLoader] = useState(false);
+  const refAeropayCard = useRef();
+  const refDropDownIcon = useRef();
+  const refAddPointMessage = useRef();
+  const refButton = useRef([]);
 
   useEffect(() => {
-    const data = dataService(URL_DATA_USER, createHeader("GET"));
-    data.then((res) => dispatch({ type: "receiveUserData", payload: res }));
+    const userData = dataService(URL_USER_DATA, createHeader("GET"));
+    userData.then((res) => dispatch({ type: "receiveUserData", payload: res }));
+
+    refButton.current.map((button) => {
+      if (button.className.includes("active")) {
+        setAmount(Number(button.value));
+      }
+    });
   }, [state.points, state.redeemMessage]);
 
+  useEffect(() => {
+    refButton.current[0].classList.add("active");
+  }, []);
+
   const handleClick = (e) => {
-    amount = Number(e.target.value);
+    setAmount(Number(e.target.value));
+    refButton.current.map((button) => {
+      if (button.className.includes("active")) {
+        button.classList.remove("active");
+      }
+    });
+    e.target.classList.add("active");
+    e.preventDefault();
+  };
+
+  const handleClickAddPoints = (e) => {
+    setLoader(true);
     const data = dataService(
       URL_USER_POINTS,
       createHeader("POST", { amount: amount })
     );
     data.then((res) => dispatch({ type: "addPoints", payload: res }));
+    data.then(() => setLoader(false));
+    data.then(() => refAddPointMessage.current.classList.toggle("show"));
+    setTimeout(() => refAddPointMessage.current.classList.toggle("show"), 2000);
     e.preventDefault();
   };
 
   const handleDropDownClick = (e) => {
-    console.log(refAeropayCard.current)
-    refAeropayCard.current.classList.toggle("show")
-  } 
+    refAeropayCard.current.classList.toggle("show");
+    refDropDownIcon.current.classList.toggle("rotate");
+  };
 
   return (
     <header className="App-header">
@@ -43,13 +76,16 @@ function NavBar() {
         <div className="App-nav-container-logo">
           <img src={aerolabLogo} />
         </div>
-        <div onClick={handleDropDownClick} className="App-nav-container-action">
-          <div className="App-nav-container-aerocoins">
+        <div className="App-nav-container-action">
+          <div
+            onClick={handleDropDownClick}
+            className="App-nav-container-aerocoins"
+          >
             <div className="aerocoins-logo">
               <img src={aerolabCoinLogo} />
             </div>
             <div className="aerocoins-points">{state?.userData?.points}</div>
-            <div  className="aerocoins-dropdown-icon">
+            <div ref={refDropDownIcon} className="aerocoins-dropdown-icon">
               <img src={dropIcon} />
             </div>
           </div>
@@ -83,44 +119,41 @@ function NavBar() {
                   </div>
                 </div>
                 <div className="aeropay-body-points">
-                  <div className="aeropay-points 1000">
-                    <form className="aeropay-form">
-                      <button
-                        onClick={handleClick}
-                        value="1000"
-                        className="aeropay-add-point-button"
-                      >
-                        1000
-                      </button>
-                    </form>
+                  <div ref={refAddPointMessage} className="add-points-message">
+                    <span className="content-success-icon">
+                      <img src={successIcon} />
+                    </span>
+                    {`${amount} points added successfully`}
                   </div>
-                  <div className="aeropay-points 5000">
-                    <form className="aeropay-body-form">
-                      <button
-                        onClick={handleClick}
-                        value="5000"
-                        className="aeropay-add-point-button"
+                  <div className="aeropay-points">
+                    {buttonData.map((button, i) => (
+                      <Button
+                        key={button.value}
+                        dynamicClass={"aeropay-quantity"}
+                        valueButton={button.value}
+                        refC={(el) => (refButton.current[i] = el)}
+                        handleClick={handleClick}
                       >
-                        5000
-                      </button>
-                    </form>
-                  </div>
-                  <div className="aeropay-points 7500">
-                    <form className="aeropay-body-form">
-                      <button
-                        onClick={handleClick}
-                        value="7500"
-                        className="aeropay-add-point-button"
-                      >
-                        7500
-                      </button>
-                    </form>
+                        {button.value}
+                      </Button>
+                    ))}
                   </div>
                 </div>
                 <div className="aeropay-body-action">
-                  <form className="aeropay-form">
-                    <button className="aeropay-button">Add-points</button>
-                  </form>
+                  {/* <form className="aeropay-form"> */}
+                    {/* <button
+                      onClick={handleClickAddPoints}
+                      className="aeropay-add action-button"
+                    >
+                      {loader ? <Loader /> : "Add Points"}
+                    </button> */}
+                    <Button
+                      dynamicClass={"aeropay-add"}
+                      handleClick={handleClickAddPoints}
+                    >
+                      {loader ? <Loader /> : "Add Points"}
+                    </Button>
+                  {/* </form> */}
                 </div>
               </div>
             </div>
