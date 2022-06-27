@@ -52,6 +52,7 @@
   box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.08);
   border-radius: 16px;
   border: 1px solid #dae4f2;
+  cursor: initial;
   position: absolute;
   top: 3rem;
   right: 0;
@@ -74,7 +75,8 @@
   padding: 1rem;
 }
 
-.aeropay-header-title {
+.aeropay-header-title,
+.aeropay-header-balance {
   color: #252f3d;
   font-size: 1.1rem;
   font-weight: 600;
@@ -107,13 +109,11 @@
 }
 
 .aeropay-body-aerocard-header {
-  /* border: 1px solid black; */
   display: flex;
   justify-content: space-between;
 }
 
 .aeropay-body-aerocard-footer {
-  /* border: 1px solid black; */
   display: flex;
   justify-content: space-between;
 }

@@ -17,6 +17,20 @@
   transition: all ease 0.2s;
   z-index: 5;
 }
+.action-message.product {
+  top: auto;
+  bottom: 130px;
+  transform: translateY(100px);
+  transition: all ease 0.2s;
+  z-index: 5;
+}
+
+.action-message.product.show {
+  top: auto;
+  bottom: 130px;
+  transform: translateY(60px);
+  z-index: 15;
+}
 
 .action-message.show {
   opacity: 1;

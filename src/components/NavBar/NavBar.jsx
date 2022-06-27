@@ -2,8 +2,6 @@ import aerolabLogo from "../../assets/icons/aerolab-logo.svg";
 import aerolabCoinLogo from "../../assets/icons/aerolab-coin-logo.svg";
 import dropIcon from "../../assets/icons/drop-icon.svg";
 import aeropayIcon from "../../assets/icons/aeropay-icon.svg";
-import aeropayCloseIcon from "../../assets/icons/aeropay-close-icon.svg";
-import successIcon from "../../assets/icons/success-icon.svg";
 import "./NavBar.css";
 import { dataService } from "../../services/data.service";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -94,8 +92,8 @@ function NavBar() {
             <div className="aeropay-card">
               <div className="aeropay-header">
                 <div className="aeropay-header-title">Add balance</div>
-                <div className="aeropay-header-icon">
-                  <img src={aeropayCloseIcon} />
+                <div className="aeropay-header-balance">
+                  {amount}
                 </div>
               </div>
               <div className="aeropay-body">
