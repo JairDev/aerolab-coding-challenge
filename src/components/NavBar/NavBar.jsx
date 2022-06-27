@@ -11,6 +11,7 @@ import { AerolabContextData } from "../../context";
 import { createHeader } from "../../utils/createHeaders.utils";
 import Button from "../Button/Button";
 import Loader from "../Loader/Loader";
+import Message from "../Message/Message";
 
 const URL_USER_DATA = "https://coding-challenge-api.aerolab.co/user/me";
 const URL_USER_POINTS = "https://coding-challenge-api.aerolab.co/user/points";
@@ -119,12 +120,10 @@ function NavBar() {
                   </div>
                 </div>
                 <div className="aeropay-body-points">
-                  <div ref={refAddPointMessage} className="add-points-message">
-                    <span className="content-success-icon">
-                      <img src={successIcon} />
-                    </span>
-                    {`${amount} points added successfully`}
-                  </div>
+                  <Message
+                    refNode={refAddPointMessage}
+                    text={`${amount} points added successfully`}
+                  />
                   <div className="aeropay-points">
                     {buttonData.map((button, i) => (
                       <Button
@@ -140,20 +139,12 @@ function NavBar() {
                   </div>
                 </div>
                 <div className="aeropay-body-action">
-                  {/* <form className="aeropay-form"> */}
-                    {/* <button
-                      onClick={handleClickAddPoints}
-                      className="aeropay-add action-button"
-                    >
-                      {loader ? <Loader /> : "Add Points"}
-                    </button> */}
-                    <Button
-                      dynamicClass={"aeropay-add"}
-                      handleClick={handleClickAddPoints}
-                    >
-                      {loader ? <Loader /> : "Add Points"}
-                    </Button>
-                  {/* </form> */}
+                  <Button
+                    dynamicClass={"aeropay-add"}
+                    handleClick={handleClickAddPoints}
+                  >
+                    {loader ? <Loader /> : "Add Points"}
+                  </Button>
                 </div>
               </div>
             </div>

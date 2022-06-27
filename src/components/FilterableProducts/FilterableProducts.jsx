@@ -32,6 +32,7 @@ function FilterableProducts() {
   const handleClickSort = (e) => {
     const valueSort = e.target.value;
     dispatch({ type: "sortByPrice", payload: valueSort });
+    e.preventDefault();
   };
 
   const handleChange = (e) => {
@@ -73,22 +74,7 @@ function FilterableProducts() {
           <div className="product-section-header-filter-price">
             <span>Sort by</span>
             <div className="filter-price-options-container">
-              {/* <div className="filter-price-option">
-                <button onClick={handleClickSort} value="recent">
-                  Most Recent
-                </button>
-              </div>
-              <div className="filter-price-option">
-                <button onClick={handleClickSort} value="lowest-price">
-                  Lowest Price
-                </button>
-              </div>
-              <div className="filter-price-option">
-                <button onClick={handleClickSort} value="highest-price">
-                  Highest Price
-                </button>
-              </div> */}
-              {/* {buttonData.map((button, i) => (
+              {buttonData.map((button, i) => (
                 <div key={button.value} className="filter-price-option">
                   <Button
                     dynamicClass={"aeropay-filter"}
@@ -99,7 +85,7 @@ function FilterableProducts() {
                     {button.label}
                   </Button>
                 </div>
-              ))} */}
+              ))}
             </div>
           </div>
 
