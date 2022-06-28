@@ -97,7 +97,7 @@ function Home() {
       <section className="product-section">
         <div className="product-section-container">
           <FilterableProducts />
-          <div className="product-section-footer">
+          {/* <div className="product-section-footer">
             <div className="product-section-footer-wrapper">
               <div className="total-products">1 of 16 products</div>
               <div className="container-product-pagination">
@@ -110,7 +110,7 @@ function Home() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
     </main>
