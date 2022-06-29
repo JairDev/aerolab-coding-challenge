@@ -1,7 +1,8 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import { AerolabContextData } from "../../context";
 import { dataService } from "../../services/data.service";
 import { createHeader } from "../../utils/createHeaders.utils";
+import Loader from "../Loader/Loader";
 import Message from "../Message/Message";
 import "./ProductCard.css";
 
@@ -14,18 +15,21 @@ function ProductCard({
   productCategory,
   productCost,
 }) {
-  const refActionMessage = useRef()
+  const [loader, setLoader] = useState(false);
+  const refActionMessage = useRef();
   const { dispatch } = useContext(AerolabContextData);
 
   const handleClick = (e) => {
     const productId = e.target.dataset.idproduct;
+    setLoader(true);
     const data = dataService(
       ULR_PRODUCT_REDEEM,
       createHeader("POST", { productId: productId })
     );
     data.then((res) => dispatch({ type: "redeemPoints", payload: res }));
+    data.then(() => setLoader(false));
     data.then(() => refActionMessage.current.classList.toggle("show"));
-    setTimeout(() => refActionMessage.current.classList.toggle("show"), 2000);
+    setTimeout(() => refActionMessage.current.classList.toggle("show"), 1500);
     e.preventDefault();
   };
   return (
@@ -46,14 +50,14 @@ function ProductCard({
               data-idproduct={id}
               className="button-redeem"
             >
-              Redeem for {productCost}
+              {loader ? <Loader/>  : `Redeem for ${productCost}`}
             </button>
           </form>
         </div>
       </div>
       <Message
         refNode={refActionMessage}
-        text={`product redeemed successfully`}
+        text={`${productName}`}
         dynamicClass={"product"}
       />
     </div>

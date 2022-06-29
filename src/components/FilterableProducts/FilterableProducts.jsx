@@ -36,6 +36,8 @@ export const sliceArr = (currentPage, itemsPerPage, arr) => {
 
 function FilterableProducts() {
   const itemsPerPage = 16;
+  // let first = 0
+  const [itemNumber, setItemNumber] = useState(0)
   const [numberOfPages, setNumberOfPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [paginatedArray, setPaginatedArray] = useState([]);
@@ -43,8 +45,9 @@ function FilterableProducts() {
   const categoryValue = state.visibilityCategory;
   const priceValue = state.visibilityPrice;
   const productsData = state.productsData;
-  const visibilityPrice = state.visibilityPrice;
   const refButton = useRef([]);
+  const refDownButton = useRef();
+  const refUpButton = useRef();
 
   useEffect(() => {
     const data = dataService(URL_PRODUCTS, createHeader("GET"));
@@ -57,16 +60,35 @@ function FilterableProducts() {
     const pages = Math.ceil(arr.length / itemsPerPage);
     setNumberOfPages(pages);
     setPaginatedArray(pagination);
-  }, [productsData, currentPage, visibilityPrice]);
+    if (currentPage > 0) {
+      refDownButton.current.classList.add("active");
+    } else {
+      refDownButton.current.classList.remove("active");
+    }
+
+    if (currentPage + 1 >= numberOfPages) {
+      refUpButton.current.classList.remove("active");
+    } else {
+      refUpButton.current.classList.add("active");
+    }
+    if(currentPage === 0) {
+      setItemNumber(1)
+    }else {
+      const result = currentPage * pagination.length
+      setItemNumber(result)
+    }
+
+  }, [productsData, currentPage, priceValue, categoryValue]);
 
   const handleClickPagination = (e) => {
     const target = e.target.closest(".content-icon-pagination");
     const paginationData = target.dataset.pagination;
+    // console.log(target)
     if (paginationData === "up") {
-      if(currentPage + 1 >= numberOfPages) return
+      if (currentPage + 1 >= numberOfPages) return;
       setCurrentPage((prev) => prev + 1);
     } else {
-      if(currentPage <= 0) return
+      if (currentPage <= 0) return;
       setCurrentPage((prev) => prev - 1);
     }
   };
@@ -133,6 +155,7 @@ function FilterableProducts() {
 
           <div className="container-product-pagination">
             <div
+              ref={refDownButton}
               onClick={handleClickPagination}
               className="content-icon-pagination down"
               data-pagination="down"
@@ -143,6 +166,7 @@ function FilterableProducts() {
               {`Page ${currentPage + 1} of ${numberOfPages}`}
             </div>
             <div
+              ref={refUpButton}
               onClick={handleClickPagination}
               className="content-icon-pagination up"
               data-pagination="up"
@@ -166,7 +190,7 @@ function FilterableProducts() {
       </div>
       <div className="product-section-footer">
         <div className="product-section-footer-wrapper">
-          <div className="total-products">1 of 16 products</div>
+          <div className="total-products">{`${itemNumber} of ${(currentPage + 1) * paginatedArray.length}`}</div>
           <div className="container-product-pagination">
             <div
               onClick={handleClickPagination}

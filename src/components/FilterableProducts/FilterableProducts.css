@@ -17,11 +17,22 @@
   cursor: pointer;
   width: 40px;
   height: 40px;
-}
-
-.content-icon-pagination.down {
   opacity: 0.5;
 }
+
+.content-icon-pagination.up.active {
+  /* border: 2px solid red; */
+  opacity: 1;
+}
+
+.content-icon-pagination.down.active {
+  /* border: 2px solid red; */
+  opacity: 1;
+}
+
+/* .content-icon-pagination.down {
+  opacity: 0.5;
+} */
 
 .content-icon-pagination img {
   width: 100%;

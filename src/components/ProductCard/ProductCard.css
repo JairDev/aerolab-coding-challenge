@@ -50,6 +50,9 @@
   border-radius: 16px;
   color: #ffffff;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-weight: 600;
   font-family: var(--font-family);
   width: 100%;
