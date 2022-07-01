@@ -45,3 +45,20 @@
   background: linear-gradient(102.47deg, #176feb -5.34%, #ff80ff 106.58%);
   color: #f5f9ff;
 }
+
+.redeemProduct {
+  background: linear-gradient(102.47deg, #176feb -5.34%, #ff80ff 106.58%);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 56px;
+}
+
+.redeemProduct.needPoints {
+  background: #e6edf7;
+  color: #7c899c;
+}

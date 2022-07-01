@@ -1,8 +1,8 @@
 import "./Loader.css"
 
-function Loader() {
+function Loader({dynamicClass}) {
   return (
-    <span class="loader"></span>
+    <span className={`loader ${dynamicClass}`}></span>
   )
 }
 

@@ -11,15 +11,15 @@ import Button from "../Button/Button";
 import Loader from "../Loader/Loader";
 import Message from "../Message/Message";
 
-const URL_USER_DATA = "https://coding-challenge-api.aerolab.co/user/me";
 const URL_USER_POINTS = "https://coding-challenge-api.aerolab.co/user/points";
+const URL_USER_DATA = "https://coding-challenge-api.aerolab.co/user/me";
 
 const buttonData = [{ value: "1000" }, { value: "5000" }, { value: "7500" }];
 
 function NavBar() {
+  const [loader, setLoader] = useState(false);
   const [amount, setAmount] = useState(1000);
   const { state, dispatch } = useContext(AerolabContextData);
-  const [loader, setLoader] = useState(false);
   const refAeropayCard = useRef();
   const refDropDownIcon = useRef();
   const refAddPointMessage = useRef();
@@ -34,6 +34,7 @@ function NavBar() {
         setAmount(Number(button.value));
       }
     });
+
   }, [state.points, state.redeemMessage]);
 
   useEffect(() => {
@@ -92,9 +93,7 @@ function NavBar() {
             <div className="aeropay-card">
               <div className="aeropay-header">
                 <div className="aeropay-header-title">Add balance</div>
-                <div className="aeropay-header-balance">
-                  {amount}
-                </div>
+                <div className="aeropay-header-balance">{amount}</div>
               </div>
               <div className="aeropay-body">
                 <div className="aeropay-body-aerocard">
@@ -118,10 +117,6 @@ function NavBar() {
                   </div>
                 </div>
                 <div className="aeropay-body-points">
-                  <Message
-                    refNode={refAddPointMessage}
-                    text={`${amount} points added successfully`}
-                  />
                   <div className="aeropay-points">
                     {buttonData.map((button, i) => (
                       <Button
@@ -143,6 +138,12 @@ function NavBar() {
                   >
                     {loader ? <Loader /> : "Add Points"}
                   </Button>
+                  <Message
+                    refNode={refAddPointMessage}
+                    dynamicClass={"add-points"}
+                    type={`${amount}`}
+                    action={"added"}
+                  />
                 </div>
               </div>
             </div>

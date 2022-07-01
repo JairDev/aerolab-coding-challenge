@@ -1,7 +1,9 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AerolabContextData } from "../../context";
 import { dataService } from "../../services/data.service";
 import { createHeader } from "../../utils/createHeaders.utils";
+import ArePointsNeeded from "../ArePointsNeeded/ArePointsNeeded";
+import Button from "../Button/Button";
 import Loader from "../Loader/Loader";
 import Message from "../Message/Message";
 import "./ProductCard.css";
@@ -17,16 +19,21 @@ function ProductCard({
 }) {
   const [loader, setLoader] = useState(false);
   const refActionMessage = useRef();
-  const { dispatch } = useContext(AerolabContextData);
+  const { state, dispatch } = useContext(AerolabContextData);
+
+  useEffect(() => {
+    // console.log(state)
+  });
 
   const handleClick = (e) => {
-    const productId = e.target.dataset.idproduct;
+    const target = e.target.closest(".redeemProduct");
+    const productId = target.dataset.idproduct;
     setLoader(true);
     const data = dataService(
       ULR_PRODUCT_REDEEM,
       createHeader("POST", { productId: productId })
     );
-    data.then((res) => dispatch({ type: "redeemPoints", payload: res }));
+    data.then((res) => dispatch({ type: "redeemProduct", payload: res }));
     data.then(() => setLoader(false));
     data.then(() => refActionMessage.current.classList.toggle("show"));
     setTimeout(() => refActionMessage.current.classList.toggle("show"), 1500);
@@ -43,23 +50,30 @@ function ProductCard({
           <span className="product-card-subtitle">{productCategory}</span>
         </div>
         <div className="product-card-action">
-          <form action="">
-            <button
-              onClick={handleClick}
-              value="20000"
-              data-idproduct={id}
-              className="button-redeem"
-            >
-              {loader ? <Loader/>  : `Redeem for ${productCost}`}
-            </button>
-          </form>
+          <Button
+            handleClick={handleClick}
+            id={id}
+            dynamicClass={`redeemProduct ${
+              productCost > state?.userData?.points ? "needPoints" : ""
+            }`}
+          >
+            {loader ? (
+              <Loader />
+            ) : (
+              <ArePointsNeeded
+                points={state?.userData?.points}
+                productCost={productCost}
+              />
+            )}
+          </Button>
+          <Message
+            refNode={refActionMessage}
+            dynamicClass={"product"}
+            type={`${productName}`}
+            action={"redeemed"}
+          />
         </div>
       </div>
-      <Message
-        refNode={refActionMessage}
-        text={`${productName}`}
-        dynamicClass={"product"}
-      />
     </div>
   );
 }

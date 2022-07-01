@@ -108,6 +108,11 @@
   margin-top: 1rem;
 }
 
+.aeropay-body-action {
+  position: relative;
+  z-index: 20;
+}
+
 .aeropay-body-aerocard-header {
   display: flex;
   justify-content: space-between;
@@ -136,4 +141,6 @@
 .aeropay-body-form {
   display: flex;
   justify-content: space-between;
+  position: relative;
+  z-index: 20;
 }

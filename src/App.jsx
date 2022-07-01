@@ -7,7 +7,7 @@ import { initialState, reducer } from "./reducer";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
-
+  
   return (
     <div className="App">
       <AerolabContextData.Provider value={{state, dispatch}}>

@@ -4,19 +4,22 @@ export const initialState = {
   productsData: [],
   redeemMessage: {},
   visibilityCategory: "all",
-  visibilityPrice: ""
+  visibilityPrice: "",
+  isLoading: false,
 };
 
-export const reducer = (state = initialState, { type, payload }) => {
+export const reducer = (state, { type, payload }) => {
   switch (type) {
+    case "dataFetch":
+      return { ...state, isLoading: true };
     case "receiveUserData":
       return { ...state, userData: payload };
     case "receiveProductsData":
-      return { ...state, productsData: payload };
+      return { ...state, productsData: payload, isLoading: false };
     case "addPoints":
       return { ...state, points: payload };
-    case "redeemPoints":
-      return { ...state, redeemMessage: payload };
+    case "redeemProduct":
+      return { ...state, redeemMessage: payload, isLoading: false };
     case "filterByCategory":
       return { ...state, visibilityCategory: payload, visibilityPrice: "" };
     case "sortByPrice":
