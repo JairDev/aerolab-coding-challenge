@@ -41,6 +41,7 @@
   background: linear-gradient(102.47deg, #176feb -5.34%, #ff80ff 106.58%);
   border-radius: 24px;
   color: #ffffff;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   font-weight: 600;
@@ -235,22 +236,5 @@
 
   .product-section-header-filter-price {
     margin-top: 0rem;
-  }
-
-  .container-product-pagination {
-    margin-top: 0rem;
-  }
-
-  .product-section-footer {
-    justify-content: flex-end;
-  }
-
-  .product-section-footer-wrapper {
-    /* border: 2px solid blue; */
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 55%;
   }
 }

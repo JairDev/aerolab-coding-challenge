@@ -5,10 +5,10 @@ import arrowPaginationRight from "../../assets/icons/arrow-right.svg";
 import { handleFilterPrice } from "../../utils/filterData.utils";
 import { arraySlice } from "../../utils/arraySlice.utils";
 import ProductCard from "../ProductCard/ProductCard";
-import "./PageTheElements.css"
+import "./PageTheElements.css";
 
-function PageTheElements({ elementsArray }) {
-  const { state, dispatch } = useContext(AerolabContextData);
+function PageTheElements() {
+  const { state } = useContext(AerolabContextData);
   const [paginatedArray, setPaginatedArray] = useState([]);
   const itemsPerPage = 16;
   const [numberOfPages, setNumberOfPages] = useState(0);
@@ -82,18 +82,17 @@ function PageTheElements({ elementsArray }) {
         </div>
       </div>
 
-      <div className="container-products"> 
-
-      {paginatedArray.map(({ _id, img, name, category, cost }) => (
-        <ProductCard
-          key={_id}
-          id={_id}
-          imgSrc={img.url}
-          productName={name}
-          productCategory={category}
-          productCost={cost}
-        />
-      ))}
+      <div className="container-products">
+        {paginatedArray.map(({ _id, img, name, category, cost }) => (
+          <ProductCard
+            key={_id}
+            id={_id}
+            imgSrc={img.url}
+            productName={name}
+            productCategory={category}
+            productCost={cost}
+          />
+        ))}
       </div>
 
       <div className="product-section-footer">

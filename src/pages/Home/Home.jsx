@@ -6,8 +6,15 @@ import walkCardLogo from "../../assets/icons/walk-card-logo.svg";
 import arrowDown from "../../assets/icons/arrow-down.svg";
 import "./Home.css";
 import FilterableProducts from "../../components/FilterableProducts/FilterableProducts";
+import { useRef } from "react";
 
 function Home() {
+  const scrollTo = useRef()
+  const handleClick = (e) => {
+    const topCoord = scrollTo.current.getBoundingClientRect().y
+    window.scrollTo(0, topCoord + 100)
+    console.log(window)
+  }
   return (
     <main>
       <section className="landing">
@@ -20,8 +27,8 @@ function Home() {
               and exchange them for cool tech.
             </h2>
           </div>
-          <div className="cta-button-container">
-            VIEW ALL PRODUCTS{" "}
+          <div onClick={handleClick} className="cta-button-container">
+            VIEW ALL PRODUCTS
             <span className="icon-cta-landing">
               <img src={arrowDown} />
             </span>
@@ -90,7 +97,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="product-section">
+      <section ref={scrollTo} className="product-section">
         <div className="product-section-container">
           <FilterableProducts />
         </div>

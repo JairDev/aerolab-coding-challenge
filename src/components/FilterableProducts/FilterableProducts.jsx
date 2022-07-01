@@ -25,8 +25,18 @@ function FilterableProducts() {
     data.then((res) => dispatch({ type: "receiveProductsData", payload: res }));
   }, []);
 
+  useEffect(() => {
+    refButton.current[0].classList.add("active");
+  }, []);
+
   const handleClickSort = (e) => {
     const valueSort = e.target.value;
+    refButton.current.map((button) => {
+      if (button.className.includes("active")) {
+        button.classList.remove("active");
+      }
+    });
+    e.target.classList.add("active");
     dispatch({ type: "sortByPrice", payload: valueSort });
     e.preventDefault();
   };
