@@ -34,7 +34,6 @@ function NavBar() {
         setAmount(Number(button.value));
       }
     });
-
   }, [state.points, state.redeemMessage]);
 
   useEffect(() => {
