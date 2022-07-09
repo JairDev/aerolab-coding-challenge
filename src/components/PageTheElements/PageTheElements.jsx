@@ -7,7 +7,7 @@ import { arraySlice } from "../../utils/arraySlice.utils";
 import ProductCard from "../ProductCard/ProductCard";
 import "./PageTheElements.css";
 
-function PageTheElements() {
+function PageTheElements({ elementsArray, isRedeemView }) {
   const { state } = useContext(AerolabContextData);
   const [paginatedArray, setPaginatedArray] = useState([]);
   const itemsPerPage = 16;
@@ -17,14 +17,15 @@ function PageTheElements() {
 
   const categoryValue = state.visibilityCategory;
   const priceValue = state.visibilityPrice;
-  const productsData = state.productsData;
   const refDownButton = useRef();
   const refUpButton = useRef();
 
   useEffect(() => {
-    const arr = handleFilterPrice(categoryValue, priceValue, productsData);
-    const pagination = arraySlice(currentPage, itemsPerPage, arr);
-    const pages = Math.ceil(arr.length / itemsPerPage);
+    const resultArray = handleFilterPrice(categoryValue, priceValue, elementsArray);
+    // console.log(resultArray)
+    const pagination = arraySlice(currentPage, itemsPerPage, resultArray);
+    // console.log(pagination)
+    const pages = Math.ceil(resultArray.length / itemsPerPage);
     setNumberOfPages(pages);
     setPaginatedArray(pagination);
     if (currentPage > 0) {
@@ -44,7 +45,7 @@ function PageTheElements() {
       const result = currentPage * pagination.length;
       setItemNumber(result);
     }
-  }, [productsData, currentPage, priceValue, categoryValue]);
+  }, [currentPage, priceValue, categoryValue, elementsArray]);
 
   const handleClickPagination = (e) => {
     const target = e.target.closest(".content-icon-pagination");
@@ -83,14 +84,15 @@ function PageTheElements() {
       </div>
 
       <div className="container-products">
-        {paginatedArray.map(({ _id, img, name, category, cost }) => (
+        {paginatedArray.map(({ productId, img, name, category, cost }) => (
           <ProductCard
-            key={_id}
-            id={_id}
+            key={productId}
+            id={productId}
             imgSrc={img.url}
             productName={name}
             productCategory={category}
             productCost={cost}
+            isRedeemView={isRedeemView}
           />
         ))}
       </div>

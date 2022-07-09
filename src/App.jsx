@@ -26,7 +26,6 @@ function App() {
             path="redeem-history"
             element={
               <Layout>
-                {" "}
                 <RedeemHistory />
               </Layout>
             }

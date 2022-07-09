@@ -16,15 +16,12 @@ function ProductCard({
   productName,
   productCategory,
   productCost,
+  isRedeemView,
 }) {
   const [loader, setLoader] = useState(false);
   const refActionMessage = useRef();
   const { state, dispatch } = useContext(AerolabContextData);
-
-  useEffect(() => {
-    // console.log(state)
-  });
-
+  
   const handleClick = (e) => {
     const target = e.target.closest(".redeemProduct");
     const productId = target.dataset.idproduct;
@@ -39,6 +36,22 @@ function ProductCard({
     setTimeout(() => refActionMessage.current.classList.toggle("show"), 1500);
     e.preventDefault();
   };
+
+  if (isRedeemView) {
+    return (
+      <div className="product-card">
+        <div className="product-card-header">
+          <img src={imgSrc} />
+        </div>
+        <div className="product-card-footer">
+          <div className="product-card-footer-title">
+            <p className="product-card-title">{productName}</p>
+            <span className="product-card-subtitle">{productCategory}</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="product-card">
       <div className="product-card-header">

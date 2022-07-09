@@ -17,6 +17,7 @@ const buttonData = [
 
 function FilterableProducts() {
   const { state, dispatch } = useContext(AerolabContextData);
+  const productsData = state.productsData;
   const refButton = useRef([]);
 
   useEffect(() => {
@@ -98,7 +99,7 @@ function FilterableProducts() {
           </div>
         </div>
       </div>
-      <PageTheElements />
+      <PageTheElements elementsArray={productsData}/>
     </>
   );
 }

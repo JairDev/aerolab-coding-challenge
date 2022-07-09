@@ -5,7 +5,7 @@ const handleFilterCategory = (categoryValue, array) => {
   return array.filter((product) => product.category === categoryValue);
 };
 
-export const handleFilterPrice = (categoryValue, priceValue, array) => {
+export const handleFilterPrice = (categoryValue, priceValue, array = []) => {
   const result = handleFilterCategory(categoryValue, array);
   if (priceValue === "lowest-price") {
     return result.sort((a, b) => a.cost - b.cost);

@@ -1,15 +1,16 @@
-import aerolabLogo from "../../assets/icons/aerolab-logo.svg";
-import aerolabCoinLogo from "../../assets/icons/aerolab-coin-logo.svg";
-import dropIcon from "../../assets/icons/drop-icon.svg";
-import aeropayIcon from "../../assets/icons/aeropay-icon.svg";
-import "./NavBar.css";
-import { dataService } from "../../services/data.service";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AerolabContextData } from "../../context";
+import { dataService } from "../../services/data.service";
 import { createHeader } from "../../utils/createHeaders.utils";
 import Button from "../Button/Button";
 import Loader from "../Loader/Loader";
 import Message from "../Message/Message";
+import dropIcon from "../../assets/icons/drop-icon.svg";
+import aeropayIcon from "../../assets/icons/aeropay-icon.svg";
+import aerolabCoinLogo from "../../assets/icons/aerolab-coin-logo.svg";
+import aerolabLogo from "../../assets/icons/aerolab-logo.svg";
+import "./NavBar.css";
+import { Link } from "react-router-dom";
 
 const URL_USER_POINTS = "https://coding-challenge-api.aerolab.co/user/points";
 const URL_USER_DATA = "https://coding-challenge-api.aerolab.co/user/me";
@@ -73,7 +74,16 @@ function NavBar() {
     <header className="App-header">
       <nav className="App-nav">
         <div className="App-nav-container-logo">
-          <img src={aerolabLogo} />
+          <Link to={"/"}>
+            <img src={aerolabLogo} />
+          </Link>
+        </div>
+        <div className="App-nav-container-links">
+          <ul>
+            <li>
+              <Link to={"redeem-history"}>Redeem History</Link>
+            </li>
+          </ul>
         </div>
         <div className="App-nav-container-action">
           <div

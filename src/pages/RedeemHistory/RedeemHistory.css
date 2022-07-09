@@ -1,0 +1,5 @@
+.redeem-section-header-title {
+  font-size: var(--titleL2-font-size-sm);
+  font-weight: 900;
+  text-transform: uppercase;
+}

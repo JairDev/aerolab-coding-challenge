@@ -18,6 +18,31 @@
   position: relative;
 }
 
+.App-nav-container-links a {
+  color: #252f3d;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.App-nav-container-links li {
+  list-style: none;
+  position: relative;
+}
+
+.App-nav-container-links li::before {
+  content: "";
+  background: linear-gradient(102.47deg, #176feb -5.34%, #ff80ff 106.58%);
+  position: absolute;
+  bottom: -5px;
+  width: 0%;
+  height: 10%;
+  transition: all ease-in-out .2s;
+}
+
+.App-nav-container-links li:hover::before {
+  width: 100%;
+}
+
 .App-nav-container-aerocoins {
   display: flex;
   justify-content: space-around;
@@ -58,7 +83,7 @@
   right: 0;
   width: 312px;
   opacity: 0;
-  transform: translateY(-70px);
+  transform: translateY(-300px);
   transition: all ease 0.2s;
   z-index: 15;
 }
@@ -66,6 +91,7 @@
 .App-nav-container-aeropay-card.show {
   transform: translateY(0);
   opacity: 1;
+  /* z-index: 50; */
 }
 
 .aeropay-header {
