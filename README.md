@@ -1,6 +1,6 @@
 # Aerolab Coding Challenge
 
-![Link](assets/img/hero-final.png) 
+![Link](src/assets/img/hero-final.png) 
 
 ## Desafío 
 El desafío es crear una vista de catálogo para una aplicación de programa de fidelización.
