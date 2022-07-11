@@ -7,7 +7,7 @@ import { arraySlice } from "../../utils/arraySlice.utils";
 import ProductCard from "../ProductCard/ProductCard";
 import "./PageTheElements.css";
 
-function PageTheElements({ elementsArray, isRedeemView, countElements }) {
+function PageTheElements({ elementsArray, isRedeemView }) {
   const { state } = useContext(AerolabContextData);
   const [paginatedArray, setPaginatedArray] = useState([]);
   const itemsPerPage = 16;
@@ -18,8 +18,13 @@ function PageTheElements({ elementsArray, isRedeemView, countElements }) {
 
   const categoryValue = state.visibilityCategory;
   const priceValue = state.visibilityPrice;
-  const refDownButton = useRef();
-  const refUpButton = useRef();
+
+  const refDownButtonTop = useRef();
+  const refUpButtonTop = useRef();
+
+  const refDownButtonBottom = useRef();
+  const refUpButtonBottom = useRef();
+
 
   useEffect(() => {
     const resultArray = handleFilterPrice(
@@ -31,18 +36,21 @@ function PageTheElements({ elementsArray, isRedeemView, countElements }) {
     const pages = Math.ceil(resultArray.length / itemsPerPage);
     setNumberOfPages(pages);
     setPaginatedArray(pagination);
-    console.log("pagination component")
-    console.log(refDownButton)
     if (currentPage > 0) {
-      refDownButton.current.classList.add("active");
+      refDownButtonTop.current.classList.add("active");
+      refDownButtonBottom.current.classList.add("active");
     } else {
-      refDownButton.current.classList.remove("active");
+      refDownButtonTop.current.classList.remove("active");
+      refDownButtonBottom.current.classList.remove("active");
+
     }
 
     if (currentPage + 1 >= numberOfPages) {
-      refUpButton.current.classList.remove("active");
+      refUpButtonTop.current.classList.remove("active");
+      refUpButtonBottom.current.classList.remove("active");
     } else {
-      refUpButton.current.classList.add("active");
+      refUpButtonTop.current.classList.add("active");
+      refUpButtonBottom.current.classList.add("active");
     }
     if (currentPage === 0) {
       setItemNumber(1);
@@ -77,7 +85,7 @@ function PageTheElements({ elementsArray, isRedeemView, countElements }) {
     <div className="wrapper-products">
       <div className="container-product-pagination">
         <div
-          ref={refDownButton}
+          ref={refDownButtonTop}
           onClick={handleClickPagination}
           className="content-icon-pagination down"
           data-pagination="down"
@@ -88,7 +96,7 @@ function PageTheElements({ elementsArray, isRedeemView, countElements }) {
           {`Page ${currentPage + 1} of ${numberOfPages}`}
         </div>
         <div
-          ref={refUpButton}
+          ref={refUpButtonTop}
           onClick={handleClickPagination}
           className="content-icon-pagination up"
           data-pagination="up"
@@ -98,10 +106,10 @@ function PageTheElements({ elementsArray, isRedeemView, countElements }) {
       </div>
 
       <div className="container-products">
-        {paginatedArray.map(({ productId, img, name, category, cost }) => (
+        {paginatedArray.map(({ _id, img, name, category, cost }) => (
           <ProductCard
-            key={productId}
-            id={productId}
+            key={name}
+            id={_id}
             imgSrc={img.url}
             productName={name}
             productCategory={category}
@@ -116,7 +124,7 @@ function PageTheElements({ elementsArray, isRedeemView, countElements }) {
           <div className="total-products">{`${itemNumber} of ${lastItem} products`}</div>
           <div className="container-product-pagination">
             <div
-              ref={refDownButton}
+              ref={refDownButtonBottom}
               onClick={handleClickPagination}
               className="content-icon-pagination down"
               data-pagination="down"
@@ -127,7 +135,7 @@ function PageTheElements({ elementsArray, isRedeemView, countElements }) {
               {`Page ${currentPage + 1} of ${numberOfPages}`}
             </div>
             <div
-              ref={refUpButton}
+              ref={refUpButtonBottom}
               onClick={handleClickPagination}
               className="content-icon-pagination up"
               data-pagination="up"

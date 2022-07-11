@@ -31,7 +31,7 @@
 
 .App-nav-container-links li::before {
   content: "";
-  background: linear-gradient(102.47deg, #176feb -5.34%, #ff80ff 106.58%);
+  background: var(--gradien-background);
   position: absolute;
   bottom: -5px;
   width: 0%;
@@ -91,7 +91,6 @@
 .App-nav-container-aeropay-card.show {
   transform: translateY(0);
   opacity: 1;
-  /* z-index: 50; */
 }
 
 .aeropay-header {

@@ -21,8 +21,7 @@ function ProductCard({
   const [loader, setLoader] = useState(false);
   const refActionMessage = useRef();
   const { state, dispatch } = useContext(AerolabContextData);
-  
-  const handleClick = (e) => {
+  const handleClick = (e, id) => {
     const target = e.target.closest(".redeemProduct");
     const productId = target.dataset.idproduct;
     setLoader(true);

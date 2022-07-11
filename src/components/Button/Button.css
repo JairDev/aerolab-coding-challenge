@@ -15,12 +15,12 @@
 }
 
 .aeropay-quantity.action-button.active {
-  background: linear-gradient(102.47deg, #176feb -5.34%, #ff80ff 106.58%);
+  background: var(--gradient-background);
   color: #f5f9ff;
 }
 
 .aeropay-add.action-button {
-  background: linear-gradient(102.47deg, #176feb -5.34%, #ff80ff 106.58%);
+  background: var(--gradient-background);
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
   border-radius: 16px;
   color: #ffffff;
@@ -42,18 +42,17 @@
 }
 
 .aeropay-filter.action-button.active {
-  background: linear-gradient(102.47deg, #176feb -5.34%, #ff80ff 106.58%);
+  background: var(--gradient-background);
   color: #f5f9ff;
 }
 
-
 .aeropay-quantity.action-button.active {
-  background: linear-gradient(102.47deg, #176feb -5.34%, #ff80ff 106.58%);
+  background: var(--gradient-background);
   color: #f5f9ff;
 }
 
 .redeemProduct {
-  background: linear-gradient(102.47deg, #176feb -5.34%, #ff80ff 106.58%);
+  background: var(--gradient-background);
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
   border-radius: 16px;
   color: #ffffff;

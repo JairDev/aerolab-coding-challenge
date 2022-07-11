@@ -12,6 +12,8 @@
   --label-font-size: 1rem;
   --body-font-size: 1rem
   --font-family: 'Montserrat', sans-serif;
+  --gradient-background: linear-gradient(102.47deg, #176feb -5.34%, #ff80ff 106.58%);
+  --gradient-background-variant: linear-gradient(102.47deg, #7296eb -5.34%, #eac0e9 106.58%, #eac0e9 106.58%);
 }
 
 body {

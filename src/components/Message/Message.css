@@ -38,5 +38,4 @@
 .action-message.product.show {
   transform: translateY(-170px);
   opacity: 1;
-  /* z-index: 15; */
 } 

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AerolabContextData } from "../../context";
 import { dataService } from "../../services/data.service";
 import { createHeader } from "../../utils/createHeaders.utils";
@@ -18,12 +18,13 @@ const buttonData = [
 function FilterableProducts() {
   const { state, dispatch } = useContext(AerolabContextData);
   const productsData = state.productsData;
+  const [loader, setLoader] = useState(true);
   const refButton = useRef([]);
 
   useEffect(() => {
-    // dispatch({type: "dataFetch"})
     const data = dataService(URL_PRODUCTS, createHeader("GET"));
     data.then((res) => dispatch({ type: "receiveProductsData", payload: res }));
+    data.then(() => setLoader(false));
   }, []);
 
   useEffect(() => {
@@ -99,7 +100,11 @@ function FilterableProducts() {
           </div>
         </div>
       </div>
-      <PageTheElements elementsArray={productsData}/>
+      {loader ? (
+        <Loader dynamicClass={"loading-products "} />
+      ) : (
+        <PageTheElements elementsArray={productsData} />
+      )}
     </>
   );
 }
