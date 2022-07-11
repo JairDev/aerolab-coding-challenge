@@ -2,6 +2,11 @@
   position: relative;
 }
 
+.product-card:hover .redeemProduct.you-have-the-points::before {
+  /* border: 3px solid blue; */
+  opacity: 1;
+}
+
 .product-card-header {
   border-style: solid;
   border-top-width: 1px;

@@ -21,7 +21,12 @@ function ProductCard({
   const [loader, setLoader] = useState(false);
   const refActionMessage = useRef();
   const { state, dispatch } = useContext(AerolabContextData);
-  const handleClick = (e, id) => {
+
+  const handleClick = (e) => {
+    if (productCost > state?.userData?.points) {
+      e.preventDefault();
+      return;
+    }
     const target = e.target.closest(".redeemProduct");
     const productId = target.dataset.idproduct;
     setLoader(true);
@@ -66,7 +71,9 @@ function ProductCard({
             handleClick={handleClick}
             id={id}
             dynamicClass={`redeemProduct ${
-              productCost > state?.userData?.points ? "needPoints" : ""
+              productCost > state?.userData?.points
+                ? "need-points"
+                : "you-have-the-points"
             }`}
           >
             {loader ? (

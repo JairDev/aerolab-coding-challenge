@@ -32,7 +32,7 @@
 }
 
 .action-message.product {
-  transform: translateY(0px);
+  transform: translateY(-70px);
 }
 
 .action-message.product.show {

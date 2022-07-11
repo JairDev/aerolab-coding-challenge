@@ -63,7 +63,25 @@
   height: 56px;
 }
 
-.redeemProduct.needPoints {
+.redeemProduct.you-have-the-points::before {
+  content: "Reddem Now";
+  background: var(--gradient-background);
+  cursor: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateY(-300%);
+  opacity: 0;
+  transition: all ease-in-out .2s;
+}
+
+
+.redeemProduct.need-points {
   background: #e6edf7;
   color: #7c899c;
+  cursor: not-allowed;
 }
