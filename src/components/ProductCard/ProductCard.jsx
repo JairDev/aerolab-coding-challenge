@@ -57,7 +57,8 @@ function ProductCard({
     );
   }
   return (
-    <div className="product-card">
+    <div className={`product-card  ${
+      productCost < state?.userData?.points ? "you-have-the-points": ""}`}>
       <div className="product-card-header">
         <img src={imgSrc} />
       </div>
