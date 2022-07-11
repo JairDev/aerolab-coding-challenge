@@ -10,6 +10,6 @@ export function countRepeatedElements(elementsArray) {
 
       return acc;
     }, {});
-    return coutn;
+    return count;
   }
 }

@@ -7,13 +7,14 @@ import { arraySlice } from "../../utils/arraySlice.utils";
 import ProductCard from "../ProductCard/ProductCard";
 import "./PageTheElements.css";
 
-function PageTheElements({ elementsArray, isRedeemView }) {
+function PageTheElements({ elementsArray, isRedeemView, countElements }) {
   const { state } = useContext(AerolabContextData);
   const [paginatedArray, setPaginatedArray] = useState([]);
   const itemsPerPage = 16;
   const [numberOfPages, setNumberOfPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [itemNumber, setItemNumber] = useState(0);
+  const [lastItem, setLastItem] = useState(itemsPerPage);
 
   const categoryValue = state.visibilityCategory;
   const priceValue = state.visibilityPrice;
@@ -21,13 +22,17 @@ function PageTheElements({ elementsArray, isRedeemView }) {
   const refUpButton = useRef();
 
   useEffect(() => {
-    const resultArray = handleFilterPrice(categoryValue, priceValue, elementsArray);
-    // console.log(resultArray)
+    const resultArray = handleFilterPrice(
+      categoryValue,
+      priceValue,
+      elementsArray
+    );
     const pagination = arraySlice(currentPage, itemsPerPage, resultArray);
-    // console.log(pagination)
     const pages = Math.ceil(resultArray.length / itemsPerPage);
     setNumberOfPages(pages);
     setPaginatedArray(pagination);
+    console.log("pagination component")
+    console.log(refDownButton)
     if (currentPage > 0) {
       refDownButton.current.classList.add("active");
     } else {
@@ -41,9 +46,18 @@ function PageTheElements({ elementsArray, isRedeemView }) {
     }
     if (currentPage === 0) {
       setItemNumber(1);
+      setLastItem(itemsPerPage);
     } else {
-      const result = currentPage * pagination.length;
-      setItemNumber(result);
+      const firstItem = itemsPerPage * currentPage + 1;
+      const lastItem = (currentPage + 1) * pagination.length;
+
+      setItemNumber(firstItem);
+      setLastItem(lastItem);
+    }
+    if (pagination.length < itemsPerPage) {
+      if (elementsArray) {
+        setLastItem(elementsArray.length);
+      }
     }
   }, [currentPage, priceValue, categoryValue, elementsArray]);
 
@@ -99,11 +113,10 @@ function PageTheElements({ elementsArray, isRedeemView }) {
 
       <div className="product-section-footer">
         <div className="product-section-footer-wrapper">
-          <div className="total-products">{`${itemNumber} of ${
-            (currentPage + 1) * paginatedArray.length
-          } products`}</div>
+          <div className="total-products">{`${itemNumber} of ${lastItem} products`}</div>
           <div className="container-product-pagination">
             <div
+              ref={refDownButton}
               onClick={handleClickPagination}
               className="content-icon-pagination down"
               data-pagination="down"
@@ -114,6 +127,7 @@ function PageTheElements({ elementsArray, isRedeemView }) {
               {`Page ${currentPage + 1} of ${numberOfPages}`}
             </div>
             <div
+              ref={refUpButton}
               onClick={handleClickPagination}
               className="content-icon-pagination up"
               data-pagination="up"
