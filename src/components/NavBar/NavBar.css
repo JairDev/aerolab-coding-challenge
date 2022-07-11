@@ -31,7 +31,7 @@
 
 .App-nav-container-links li::before {
   content: "";
-  background: var(--gradien-background);
+  background: var(--gradient-background);
   position: absolute;
   bottom: -5px;
   width: 0%;
