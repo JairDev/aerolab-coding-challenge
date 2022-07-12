@@ -5,7 +5,6 @@ import walkCard3 from "../../assets/img/walk-card3.png";
 import walkCardLogo from "../../assets/icons/walk-card-logo.svg";
 import arrowDown from "../../assets/icons/arrow-down.svg";
 import "./Home.css";
-// import FilterableProducts from "../../components/FilterableProducts/FilterableProducts";
 import React, { Suspense, useRef } from "react";
 
 const LazyProducts = React.lazy(() =>
@@ -103,7 +102,6 @@ function Home() {
 
       <section ref={scrollTo} className="product-section">
         <div className="product-section-container">
-          {/* <FilterableProducts /> */}
           <Suspense fallback={<div>Loading...</div>}>
             <LazyProducts />
           </Suspense>
