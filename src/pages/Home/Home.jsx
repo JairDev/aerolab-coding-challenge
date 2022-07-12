@@ -5,16 +5,20 @@ import walkCard3 from "../../assets/img/walk-card3.png";
 import walkCardLogo from "../../assets/icons/walk-card-logo.svg";
 import arrowDown from "../../assets/icons/arrow-down.svg";
 import "./Home.css";
-import FilterableProducts from "../../components/FilterableProducts/FilterableProducts";
-import { useRef } from "react";
+// import FilterableProducts from "../../components/FilterableProducts/FilterableProducts";
+import React, { Suspense, useRef } from "react";
+
+const LazyProducts = React.lazy(() =>
+  import("../../components/FilterableProducts/FilterableProducts")
+);
 
 function Home() {
-  const scrollTo = useRef()
+  const scrollTo = useRef();
   const handleClick = (e) => {
-    const topCoord = scrollTo.current.getBoundingClientRect().y
-    window.scrollTo(0, topCoord + 100)
-    console.log(window)
-  }
+    const topCoord = scrollTo.current.getBoundingClientRect().y;
+    window.scrollTo(0, topCoord + 100);
+    console.log(window);
+  };
   return (
     <main>
       <section className="landing">
@@ -36,7 +40,7 @@ function Home() {
         </div>
         <div className="landing-illustration-container">
           <div className="illustration-container">
-            <img src={heroImage}/>
+            <img src={heroImage} />
           </div>
         </div>
       </section>
@@ -44,7 +48,7 @@ function Home() {
         <div className="container-walkthrough-cards">
           <div className="walkthrough-card">
             <div className="walkthrough-card-header">
-              <img src={walkCard1}/>
+              <img src={walkCard1} />
             </div>
             <div className="walkthrough-card-footer">
               <div className="walkthrough-card-footer-title">
@@ -63,7 +67,7 @@ function Home() {
 
           <div className="walkthrough-card middle">
             <div className="walkthrough-card-header">
-              <img src={walkCard2}/>
+              <img src={walkCard2} />
             </div>
             <div className="walkthrough-card-footer">
               <div className="walkthrough-card-footer-title">
@@ -99,7 +103,10 @@ function Home() {
 
       <section ref={scrollTo} className="product-section">
         <div className="product-section-container">
-          <FilterableProducts />
+          {/* <FilterableProducts /> */}
+          <Suspense fallback={<div>Loading...</div>}>
+            <LazyProducts />
+          </Suspense>
         </div>
       </section>
     </main>

@@ -105,6 +105,7 @@ function FilterableProducts() {
       ) : (
         <PageTheElements elementsArray={productsData} />
       )}
+      
     </>
   );
 }

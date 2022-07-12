@@ -75,7 +75,7 @@ function NavBar() {
       <nav className="App-nav">
         <div className="App-nav-container-logo">
           <Link to={"/"}>
-            <img src={aerolabLogo} />
+            <img src={aerolabLogo} alt="Aerolab logo"/>
           </Link>
         </div>
         <div className="App-nav-container-links">
