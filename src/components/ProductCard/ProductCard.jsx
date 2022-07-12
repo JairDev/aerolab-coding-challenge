@@ -60,7 +60,7 @@ function ProductCard({
     <div className={`product-card  ${
       productCost < state?.userData?.points ? "you-have-the-points": ""}`}>
       <div className="product-card-header">
-        <img src={imgSrc} />
+        <img src={imgSrc} alt={productName}/>
       </div>
       <div className="product-card-footer">
         <div className="product-card-footer-title">

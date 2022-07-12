@@ -11,7 +11,7 @@ function RedeemHistory() {
   return (
     <div className="content-redeem-history">
       <div className="redeem-section-header-title">
-        <h2>Redeem History</h2>
+        <h1 className="redeem-section-title">Redeem History</h1>
       </div>
       <PageTheElements elementsArray={data} isRedeemView={true} />
     </div>

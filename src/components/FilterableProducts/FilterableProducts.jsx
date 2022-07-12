@@ -59,7 +59,7 @@ function FilterableProducts() {
     <>
       <div className="product-section-header">
         <div className="product-section-header-title">
-          <h2>Tech Products</h2>
+          <h3 className="product-section-title">Tech Products</h3>
         </div>
         <div className="product-section-header-filter">
           <div className="product-section-header-filter-category">
@@ -69,7 +69,7 @@ function FilterableProducts() {
                 onChange={handleChange}
                 className="select-filter-category"
                 name="filter"
-                id=""
+                id="filter"
               >
                 <option value="all">All products</option>
                 {getCategoryOptions().map((option) => (

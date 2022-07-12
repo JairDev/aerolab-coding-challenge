@@ -36,7 +36,7 @@ function Home() {
         </div>
         <div className="landing-illustration-container">
           <div className="illustration-container">
-            <img src={heroImage} alt="" />
+            <img src={heroImage}/>
           </div>
         </div>
       </section>
@@ -44,7 +44,7 @@ function Home() {
         <div className="container-walkthrough-cards">
           <div className="walkthrough-card">
             <div className="walkthrough-card-header">
-              <img src={walkCard1} />
+              <img src={walkCard1}/>
             </div>
             <div className="walkthrough-card-footer">
               <div className="walkthrough-card-footer-title">
@@ -63,7 +63,7 @@ function Home() {
 
           <div className="walkthrough-card middle">
             <div className="walkthrough-card-header">
-              <img src={walkCard2} />
+              <img src={walkCard2}/>
             </div>
             <div className="walkthrough-card-footer">
               <div className="walkthrough-card-footer-title">
