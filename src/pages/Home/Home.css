@@ -30,6 +30,13 @@
   margin-bottom: 1rem;
 }
 
+.color-title {
+  background: -webkit-linear-gradient(-20deg, #176feb -5.34%, #ff80ff 106.58%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .proposal-subtitle {
   color: #7c899c;
   font-size: var(--subtitle-font-size);

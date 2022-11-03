@@ -23,7 +23,9 @@ function Home() {
         <div className="landing-cta-container">
           <div className="proposal-container">
             <span className="proposal-label">Explore The</span>
-            <h1 className="proposal-title">Tech Zone</h1>
+            <h1 className="proposal-title">
+              <span className="color-title">Tech</span> Zone
+            </h1>
             <h2 className="proposal-subtitle">
               Here you’ll be able to exchange all of your hard-earned Aeropoints
               and exchange them for cool tech.
