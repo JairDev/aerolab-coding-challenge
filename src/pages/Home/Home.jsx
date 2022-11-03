@@ -16,7 +16,6 @@ function Home() {
   const handleClick = (e) => {
     const topCoord = scrollTo.current.getBoundingClientRect().y;
     window.scrollTo(0, topCoord + 100);
-    console.log(window);
   };
   return (
     <main>
