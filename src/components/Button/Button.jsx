@@ -5,7 +5,7 @@ function Button({
   children,
   dynamicClass,
   handleClick,
-  refC,
+  buttonRef,
   id,
 }) {
   return (
@@ -14,7 +14,7 @@ function Button({
         onClick={handleClick}
         value={valueButton}
         className={`${dynamicClass} action-button`}
-        ref={refC}
+        ref={buttonRef}
         data-idproduct={id}
       >
         {children}

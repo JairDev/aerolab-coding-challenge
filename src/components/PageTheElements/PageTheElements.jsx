@@ -25,7 +25,6 @@ function PageTheElements({ elementsArray, isRedeemView }) {
   const refDownButtonBottom = useRef();
   const refUpButtonBottom = useRef();
 
-
   useEffect(() => {
     const resultArray = handleFilterPrice(
       categoryValue,
@@ -42,7 +41,6 @@ function PageTheElements({ elementsArray, isRedeemView }) {
     } else {
       refDownButtonTop.current.classList.remove("active");
       refDownButtonBottom.current.classList.remove("active");
-
     }
 
     if (currentPage + 1 >= numberOfPages) {

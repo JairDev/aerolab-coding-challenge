@@ -75,7 +75,7 @@ function NavBar() {
       <nav className="App-nav">
         <div className="App-nav-container-logo">
           <Link to={"/"}>
-            <img src={aerolabLogo} alt="Aerolab logo"/>
+            <img src={aerolabLogo} alt="Aerolab logo" />
           </Link>
         </div>
         <div className="App-nav-container-links">
@@ -132,7 +132,7 @@ function NavBar() {
                         key={button.value}
                         dynamicClass={"aeropay-quantity"}
                         valueButton={button.value}
-                        refC={(el) => (refButton.current[i] = el)}
+                        buttonRef={(el) => (refButton.current[i] = el)}
                         handleClick={handleClick}
                       >
                         {button.value}

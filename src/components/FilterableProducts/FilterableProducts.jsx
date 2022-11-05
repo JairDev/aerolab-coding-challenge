@@ -30,7 +30,7 @@ function FilterableProducts() {
   }, []);
 
   useEffect(() => {
-    refButton.current[0].classList.add("active");
+    // refButton.current[0].classList.add("active");
   }, []);
 
   const handleClickSort = (e) => {
@@ -91,7 +91,7 @@ function FilterableProducts() {
                   <Button
                     dynamicClass={"aeropay-filter"}
                     valueButton={button.value}
-                    refC={(el) => (refButton.current[i] = el)}
+                    buttonRef={(el) => (refButton.current[i] = el)}
                     handleClick={handleClickSort}
                   >
                     {button.label}
@@ -107,7 +107,6 @@ function FilterableProducts() {
       ) : (
         <PageTheElements elementsArray={productsData} />
       )}
-      
     </>
   );
 }
