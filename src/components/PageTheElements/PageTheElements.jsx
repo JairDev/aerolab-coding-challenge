@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { AerolabContextData } from "../../context";
 import arrowPaginationLeft from "../../assets/icons/arrow-left.svg";
 import arrowPaginationRight from "../../assets/icons/arrow-right.svg";
-import { handleFilterPrice } from "../../utils/filterData.utils";
+import { handleSortBy } from "../../utils/filterData.utils";
 import { arraySlice } from "../../utils/arraySlice.utils";
 import ProductCard from "../ProductCard/ProductCard";
 import "./PageTheElements.css";
@@ -26,11 +26,7 @@ function PageTheElements({ elementsArray, isRedeemView }) {
   const refUpButtonBottom = useRef();
 
   useEffect(() => {
-    const resultArray = handleFilterPrice(
-      categoryValue,
-      priceValue,
-      elementsArray
-    );
+    const resultArray = handleSortBy(categoryValue, priceValue, elementsArray);
     const pagination = arraySlice(currentPage, itemsPerPage, resultArray);
     const pages = Math.ceil(resultArray.length / itemsPerPage);
     setNumberOfPages(pages);
@@ -65,6 +61,7 @@ function PageTheElements({ elementsArray, isRedeemView }) {
         setLastItem(elementsArray.length);
       }
     }
+    // console.log(elementsArray)
   }, [currentPage, priceValue, categoryValue, elementsArray]);
 
   const handleClickPagination = (e) => {

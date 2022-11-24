@@ -1,3 +1,5 @@
+import { getRandomDate } from "../utils/getRamdomDate";
+
 export const initialState = {
   userData: {},
   points: {},
@@ -15,7 +17,11 @@ export const reducer = (state, { type, payload }) => {
     case "receiveUserData":
       return { ...state, userData: payload };
     case "receiveProductsData":
-      return { ...state, productsData: payload, isLoading: false };
+      const addDateToItems = payload.map((items) => ({
+        ...items,
+        date: getRandomDate(new Date(2022, 0, 1), new Date()),
+      }));
+      return { ...state, productsData: addDateToItems, isLoading: false };
     case "addPoints":
       return { ...state, points: payload };
     case "redeemProduct":

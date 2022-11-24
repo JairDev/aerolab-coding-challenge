@@ -22,7 +22,7 @@ function FilterableProducts() {
   const productsData = state.productsData;
   const [loader, setLoader] = useState(true);
   const refButton = useRef([]);
-
+  // console.log(productsData);
   useEffect(() => {
     const data = dataService(URL_PRODUCTS, createHeader("GET"));
     data.then((res) => dispatch({ type: "receiveProductsData", payload: res }));
@@ -35,6 +35,7 @@ function FilterableProducts() {
 
   const handleClickSort = (e) => {
     const valueSort = e.target.value;
+    console.log(valueSort);
     refButton.current.map((button) => {
       if (button.className.includes("active")) {
         button.classList.remove("active");
