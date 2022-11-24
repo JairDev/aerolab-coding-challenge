@@ -18,7 +18,7 @@ function Home() {
     window.scrollTo(0, topCoord + 100);
   };
   return (
-    <main>
+    <main className="app-main">
       <section className="landing">
         <div className="landing-cta-container">
           <div className="proposal-container">

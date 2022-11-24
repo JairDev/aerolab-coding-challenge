@@ -1,5 +1,10 @@
 .App-header {
-  padding: 2.5rem 0rem 6rem 0rem;
+  background-color: white;
+  padding: 1.5rem 5vw;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  z-index: 100;
 }
 
 .App-nav {
@@ -36,7 +41,7 @@
   bottom: -5px;
   width: 0%;
   height: 10%;
-  transition: all ease-in-out .2s;
+  transition: all ease-in-out 0.2s;
 }
 
 .App-nav-container-links li:hover::before {
@@ -83,9 +88,23 @@
   right: 0;
   width: 312px;
   opacity: 0;
-  transform: translateY(-300px);
+  transform: translateY(-450px);
   transition: all ease 0.2s;
   z-index: 15;
+}
+
+.App-nav-container-logo {
+  width: 32px;
+  height: 32px;
+}
+
+.App-nav-container-logo img {
+  width: 100%;
+}
+
+.App-nav-container-links {
+  text-align: center;
+  padding: 0 1rem;
 }
 
 .App-nav-container-aeropay-card.show {

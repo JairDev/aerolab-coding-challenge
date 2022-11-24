@@ -1,7 +1,4 @@
 .container {
-  /* border: 2px solid red; */
-  /* padding: 0rem 8vw; */
-  /* padding: 0 10vw; */
   padding: 0rem 5vw;
   max-width: 1440px;
   margin: 0 auto;
@@ -9,8 +6,6 @@
 
 @media screen and (min-width: 1440px) {
   .container {
-    /* border: 2px solid red; */
     padding: 0rem 2vw;
-
   }
 }
