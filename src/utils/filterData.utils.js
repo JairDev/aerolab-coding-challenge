@@ -5,15 +5,14 @@ const handleFilterCategory = (categoryValue, array) => {
   return array.filter((product) => product.category === categoryValue);
 };
 
-export const handleSortBy = (categoryValue, priceValue, array = []) => {
+export const handleSortBy = (categoryValue, valueToSort = "", array = []) => {
   const result = handleFilterCategory(categoryValue, array);
 
-  if (priceValue === "lowest-price") {
+  if (valueToSort === "lowest-price") {
     return result.sort((a, b) => a.cost - b.cost);
-  } else if (priceValue === "highest-price") {
+  } else if (valueToSort === "highest-price") {
     return result.sort((a, b) => b.cost - a.cost);
-  } else if (priceValue === "recent") {
-    console.log(priceValue);
+  } else if (valueToSort === "recent") {
     result.sort((a, b) => {
       return new Date(a.date) - new Date(b.date);
     });

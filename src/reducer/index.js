@@ -27,7 +27,7 @@ export const reducer = (state, { type, payload }) => {
     case "redeemProduct":
       return { ...state, redeemMessage: payload, isLoading: false };
     case "filterByCategory":
-      return { ...state, visibilityCategory: payload, visibilityPrice: "" };
+      return { ...state, visibilityCategory: payload };
     case "sortByPrice":
       return { ...state, visibilityPrice: payload };
     default:
