@@ -1,11 +1,11 @@
-const handleFilterCategory = (categoryValue, array) => {
+function handleFilterCategory(categoryValue, array) {
   if (categoryValue === "all") {
     return array;
   }
   return array.filter((product) => product.category === categoryValue);
-};
+}
 
-export const handleSortBy = (categoryValue, valueToSort = "", array = []) => {
+export function handleSortBy(categoryValue, valueToSort = "", array = []) {
   const result = handleFilterCategory(categoryValue, array);
 
   if (valueToSort === "lowest-price") {
@@ -18,4 +18,4 @@ export const handleSortBy = (categoryValue, valueToSort = "", array = []) => {
     });
   }
   return result;
-};
+}
